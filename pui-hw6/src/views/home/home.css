@@ -1,0 +1,249 @@
+#logo-img {
+    width: 400px;
+}
+
+#top-bar {
+    display: flex;
+}
+
+#top-bar-left {
+    width: auto;
+    flex-grow: 1;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+#top-bar-right {
+    margin-left: auto;
+    width: 820px;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+nav {
+    display: flex;
+    justify-content: end;
+    margin-right: 40px;
+}
+
+/* tab nav */
+nav button {
+    padding-right: 40px;
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    font-family: Verdana;
+    border: none;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#products {
+    font-weight: bold;
+}
+
+/* bar under tab nav */
+hr {
+    border-width: 5px;
+    border: 3px solid black;
+}
+
+/* cart */
+#cart {
+    display: none;
+}
+
+.cartLine {
+    border: 4px solid #7A5D57;
+}
+
+#cartHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 80px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.cart-roll-img {
+    width: 200px;
+    border: 2px solid black;
+}
+
+.cart-roll {
+    font-size: 16px;
+    text-align: center;
+}
+
+.cart-text {
+    margin-left: 40px;
+}
+
+.cart-price {
+    font-weight: bold;
+}
+
+.remove {
+    border: none;
+    text-decoration: underline;
+    margin-top: 0px;
+    font-size: 16px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.remove:hover {
+    background-color: white;
+}
+
+/* "Our hand-made cinnamon rolls" */
+h1 {
+    font-weight: normal;
+    text-align: left;
+    font-family: Verdana;
+}
+
+/* filters div container */
+#filters {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#search {
+    height: 20px;
+    width: 300px;
+    margin-left: 75px;
+    border-radius: 5px;
+}
+
+#searchBtn {
+    height: 26px;
+    width: 74px;
+    border: solid 1px black;
+    background-color: lightgray;
+    margin: 0px;
+    font-size: 16px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+#sortBy {
+    font-size: 16px;
+    padding-left: 30px;
+    margin: 0px;
+}
+
+#sort {
+    font-weight: bold;
+}
+
+/* products div container */
+#options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* each product box */
+.roll {
+    width: 350px;
+    height: 600px;
+    margin: 10px;
+    text-align: center;
+    display: block;
+}
+
+.roll-img {
+    width: 300px;
+    margin-top: 10px;
+    border: 3px solid black;
+}
+
+/* product title */
+h2 {
+    font-family: Verdana;
+    font-weight: normal;
+    text-align: left;
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Glazing and Pack Size */
+p {
+    margin-right: 40px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    margin-left: 10px;
+    font-family: Verdana;
+    margin-top: 10px;
+}
+
+/* glazing dropdown */
+.choices {
+    display: flex;
+    padding: 20px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.glazes {
+    height: 40px;
+    font-size: 18px;
+    padding-left: 3px;
+    margin-left: 18px;
+    border: solid 2px black;
+}
+
+/* Radio button style is from https://codepen.io/w3programmings/pen/zzRKpy */
+.sizes label {
+    display: inline-block;
+    width: 20px;
+    padding: 7px;
+    border: solid 2px black;
+    transition: all 0.3s;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.sizes input[type="radio"] {
+    display: none;
+}
+
+.sizes input[type="radio"]:checked + label {
+    background-color: lightgray;
+}
+
+/* price */
+h3 {
+    margin-left: 10px;
+    font-size: 24px;
+    margin-right: 40px;
+}
+
+/* add to cart */
+button {
+    border: solid 2px black;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 18px;
+    background-color: white;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: yellow;
+}
+
+#products:hover {
+    background-color: yellow;
+}
