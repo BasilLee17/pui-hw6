@@ -66,7 +66,6 @@ function Home() {
         pTagRef.current.innerText = "";
         document.querySelector('#itemNum').innerText = "Shopping Cart (" + (cart.length + 1) + " items)";
         document.querySelector('#total').innerText = "Total: $ " + (getCartPrice() + Number(price)).toFixed(2);
-        console.log(getCartPrice());
     }
 
     const removeFromCart = (id) => {
@@ -91,7 +90,6 @@ function Home() {
             document.querySelector('#total').innerText = "Total: $ " + getCartPrice();
         }
         localStorage.setItem("storeCart", JSON.stringify(cart));
-        console.log(localStorage);
     }, [cart]);
 
     function toggleCart() {
