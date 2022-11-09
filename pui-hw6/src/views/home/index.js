@@ -9,7 +9,7 @@ import strawberry from './assets/strawberry-cinnamon-roll.jpg';
 import Product from './Product.js';
 import CartProduct from './CartProduct.js';
 import Navigation from './Navigation.js';
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 function Home() {
 
@@ -19,11 +19,7 @@ function Home() {
 
     const [searchResult, setSearchResult] = React.useState(null);
 
-    const [cart, setCart] = React.useState([]);
-
-    const [cartPrice, setCartPrice] = React.useState(0);
-
-    const [cartNum, setCartNum] = React.useState(0);
+    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("storeCart")) || []);
 
     const [sortResult, setSortResult] = React.useState("name");
 
@@ -67,11 +63,10 @@ function Home() {
     const addToCart = (imageURL, title, type, glaze, size, price) => {
         const newCart = cart.concat({ imageURL, title, type, glaze, size, price});
         setCart(newCart);
-        setCartPrice(Number(cartPrice) + Number(price));
-        setCartNum(cartNum + 1);
         pTagRef.current.innerText = "";
-        document.querySelector('#itemNum').innerText = "Shopping Cart (" + (cartNum + 1) + " items)";
-        document.querySelector('#total').innerText = "Total: $ " + (Number(cartPrice) + Number(price)).toFixed(2);
+        document.querySelector('#itemNum').innerText = "Shopping Cart (" + (cart.length + 1) + " items)";
+        document.querySelector('#total').innerText = "Total: $ " + (getCartPrice() + Number(price)).toFixed(2);
+        console.log(getCartPrice());
     }
 
     const removeFromCart = (id) => {
@@ -81,15 +76,23 @@ function Home() {
                 newCart.push(cart[i]);
             }
         }
-        setCartPrice(Number(cartPrice) - Number(cart[id].price));
-        setCartNum(cartNum - 1);
-        document.querySelector('#itemNum').innerText = "Shopping Cart (" + (cartNum - 1) + " items)";
-        document.querySelector('#total').innerText = "Total: $ " + (Number(cartPrice) - Number(cart[id].price)).toFixed(2);
+        document.querySelector('#itemNum').innerText = "Shopping Cart (" + (cart.length - 1) + " items)";
+        document.querySelector('#total').innerText = "Total: $ " + (getCartPrice() - Number(cart[id].price)).toFixed(2);
         setCart(newCart);
-        if (cartNum <= 1) {
+        if (cart.length <= 1) {
             pTagRef.current.innerText = "The cart is empty!";
         }
     }
+
+    useEffect(() => {
+        if(cart.length == 0) {
+            document.getElementById("cart-dropdown").innerHTML = "The cart is empty!";
+        } else {
+            document.querySelector('#total').innerText = "Total: $ " + getCartPrice();
+        }
+        localStorage.setItem("storeCart", JSON.stringify(cart));
+        console.log(localStorage);
+    }, [cart]);
 
     function toggleCart() {
         var element = document.querySelector('#cart');
@@ -137,6 +140,14 @@ function Home() {
         return 0;
     }
 
+    function getCartPrice() {
+        var total = 0;
+        for (var i = 0; i < cart.length; i++) {
+            total = total + Number(cart[i].price)
+        }
+        return total;
+    }
+
     return (
         <>
           <meta charSet="UTF-8" />
@@ -163,10 +174,10 @@ function Home() {
           <div id="cart">
             <hr className="cartLine"/>
               <div id="cartHeader">
-                <h2 id="itemNum">Shopping Cart (0 items)</h2>
+                <h2 id="itemNum">Shopping Cart ({cart.length} items)</h2>
                 <h2 id="total">Total: $ 0.00</h2>
               </div>
-              <p ref={pTagRef} id="cart-dropdown">The cart is empty!</p>
+              <p ref={pTagRef} id="cart-dropdown"></p>
               <div className="options">
                   {cart.map(
                    (roll, idx) => {
